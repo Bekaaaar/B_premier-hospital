@@ -145,8 +145,10 @@ const seedData = async () => {
   }
 };
 
+require('dotenv').config({ path: __dirname + '/.env' });
 const runSeed = async () => {
-  const uri = process.argv[2];
+  // Try command-line argument, then .env
+  const uri = process.argv[2] || process.env.MONGODB_URI;
   await connectDB(uri);
   await seedData();
 };

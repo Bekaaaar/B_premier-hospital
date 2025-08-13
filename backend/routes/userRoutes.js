@@ -51,15 +51,14 @@ router.post('/', auth, authorize('admin'), async (req, res) => {
     
     await user.save();
     
-    // Return user without password
-    const userResponse = {
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      role: user.role
-    };
-    
-    res.status(201).json(userResponse);
+      // Return user without password, use _id for consistency
+      const userResponse = {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        role: user.role
+      };
+      res.status(201).json(userResponse);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

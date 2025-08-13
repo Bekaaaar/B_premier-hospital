@@ -82,6 +82,10 @@ app.use('/api/admin-dashboard', auth, authorize('admin'), adminDashboardRoutes);
 const roomRoutes = require('./routes/roomRoutes');
 app.use('/api/rooms', roomRoutes);
 
+// Receptionist routes
+const receptionistRoutes = require('./routes/receptionistRoutes');
+app.use('/api/receptionist', receptionistRoutes);
+
 // User routes
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', auth, authorize('admin'), userRoutes);
